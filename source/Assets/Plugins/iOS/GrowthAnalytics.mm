@@ -19,26 +19,12 @@ extern "C" void initializeWithApplicationId(const char* applicationId, const cha
     [[GrowthAnalytics sharedInstance] initializeWithApplicationId:NSStringFromCharString(applicationId) credentialId:NSStringFromCharString(credentialId)];
 }
 
-extern "C" void track(const char* eventId) {
-    [[GrowthAnalytics sharedInstance] track:NSStringFromCharString(eventId)];
+extern "C" void track(const char* eventId, const char* properties, int option) {
+    NSData* data = [NSStringFromCharString(properties) dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    
+    [[GrowthAnalytics sharedInstance] track:NSStringFromCharString(eventId) properties:dictionary option:option];
 }
-
-/*
-- (void)track:(NSString *)eventId properties:(NSDictionary *)properties;
-extern "C" void track(const char* eventId, ) {
-    [[GrowthAnalytics sharedInstance] track];
-}*/
-
-/*
-- (void)track:(NSString *)eventId option:(GATrackOption)option;
-extern "C" void track() {
-    [[GrowthAnalytics sharedInstance] track];
-}
-
-- (void)track:(NSString *)eventId properties:(NSDictionary *)properties option:(GATrackOption)option;
-extern "C" void track() {
-    [[GrowthAnalytics sharedInstance] track];
-}*/
 
 extern "C" void tag(const char* tagId, const char* value) {
     [[GrowthAnalytics sharedInstance] tag:NSStringFromCharString(tagId) value:NSStringFromCharString(value)];
@@ -68,21 +54,17 @@ extern "C" void setAge(int age) {
     [[GrowthAnalytics sharedInstance] setAge:age];
 }
 
-/*
-- (void)setGender:(GAGender)gender;
-extern "C" void setGender() {
-    [[GrowthAnalytics sharedInstance] ];
-}*/
+extern "C" void setGender(int gender) {
+    [[GrowthAnalytics sharedInstance] setGender:gender];
+}
 
 extern "C" void setLevel(int level) {
     [[GrowthAnalytics sharedInstance] setLevel:level];
 }
 
-/*
-- (void)setDevelopment:(BOOL)development;
-extern "C" void setDevelopment() {
-    [[GrowthAnalytics sharedInstance] ];
-}*/
+extern "C" void setDevelopment(bool development) {
+    [[GrowthAnalytics sharedInstance] setDevelopment:development];
+}
 
 extern "C" void setDeviceModel() {
     [[GrowthAnalytics sharedInstance] setDeviceModel];
@@ -119,15 +101,3 @@ extern "C" void setAdvertisingId(const char* idfa) {
 extern "C" void setBasicTags() {
     [[GrowthAnalytics sharedInstance] setBasicTags];
 }
-
-/*typedef NS_ENUM (NSInteger, GATrackOption) {
-    GATrackOptionDefault = 0,
-    GATrackOptionOnce,
-    GATrackOptionCounter
-};
-
-typedef NS_ENUM (NSInteger, GAGender) {
-    GAGenderNone = 0,
-    GAGenderMale,
-    GAGenderFemale
-};*/

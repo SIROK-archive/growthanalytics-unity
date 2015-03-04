@@ -1,263 +1,235 @@
-using System.Collections;
-using System.Runtime.InteropServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class GrowthAnalytics
 {
 	private static GrowthAnalytics instance = new GrowthAnalytics ();
-
-	#if UNITY_IPHONE && !UNITY_EDITOR
-	[DllImport("__Internal")] static extern void initializeWithApplicationId(string applicationID, string credentialId);
-	[DllImport("__Internal")] static extern void track(string eventId);
-	/*
-	 * [DllImport("__Internal")] static extern void track(string applicationID, string credentialId);
-	 * [DllImport("__Internal")] static extern void track(string applicationID, string credentialId);
-	 * [DllImport("__Internal")] static extern void track(string applicationID, string credentialId);
-	 */
-	[DllImport("__Internal")] static extern void tag(string tagId, string value); 
-	[DllImport("__Internal")] static extern void _open();
-	[DllImport("__Internal")] static extern void _close();
-	[DllImport("__Internal")] static extern void purchase(int price, string category, string product);
-	[DllImport("__Internal")] static extern void setUserId(string userId);
-	[DllImport("__Internal")] static extern void setName(string name);
-	[DllImport("__Internal")] static extern void setAge(int age);
-	//	[DllImport("__Internal")] static extern void setGender();
-	[DllImport("__Internal")] static extern void setLevel(int level);
-	//	[DllImport("__Internal")] static extern void setDevelopment();
-	[DllImport("__Internal")] static extern void setDeviceModel();
-	[DllImport("__Internal")] static extern void setOS();
-	[DllImport("__Internal")] static extern void setLanguage();
-	[DllImport("__Internal")] static extern void setTimeZone();
-	[DllImport("__Internal")] static extern void setTimeZoneOffset();
-	[DllImport("__Internal")] static extern void setAppVersion();
-	[DllImport("__Internal")] static extern void setRandom();
-	[DllImport("__Internal")] static extern void setAdvertisingId(string idfa);
-	[DllImport("__Internal")] static extern void setBasicTags();
-	#endif
 
 	public static GrowthAnalytics GetInstance ()
 	{
 		return GrowthAnalytics.instance;
 	}
 
+	public enum GAGender
+	{
+		GAGenderNone = 0,
+		GAGenderMale = 1,
+		GAGenderFemale = 2
+	}
+
+	public enum GATrackOption
+	{
+		GATrackOptionDefault = 0,
+		GATrackOptionOnce = 1,
+		GATrackOptionCounter = 2
+	}
+
 	public void Initialize (string applicationId, string credentialId)
 	{
 		#if UNITY_ANDROID
 		GrowthAnalyticsAndroid.Initialize(applicationId, credentialId);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		initializeWithApplicationId(applicationId, credentialId);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.Initialize(applicationId, credentialId);
 		#endif
 	}
 
 	public void Tag (string tagId)
 	{
-		Tag(tagId, null);
+		Tag (tagId, null);
 	}
-	
+
 	public void Tag (string tagId, string value)
 	{
 		#if UNITY_ANDROID
-			GrowthAnalyticsAndroid.tag(tagId, value);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-			tag(tagId, value); 
+		GrowthAnalyticsAndroid.Tag(tagId, value);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.Tag(tagId, value); 
 		#endif
 	}
 
-	public void Track (string eventId)
-	{
-		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.track(eventId);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		track(eventId);
-		#endif
-	}
-
-	/*public void Track(string eventId) {
-		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.track(eventId);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		GrowthAnalyticsIOS.track(eventId); 
-		#endif
-	}
-
-	public void Track(string eventId) {
-		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.track(eventId);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		GrowthAnalyticsIOS.track(eventId); 
-		#endif
-	}
-
-	public void Track(string eventId) {
-		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.track(eventId);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		GrowthAnalyticsIOS.track(eventId); 
-		#endif
-	}*/
-
-
+//	public void Track (string eventId)
+//	{
+//		Track (eventId, new Dictionary<string, string>(), 0);
+//	}
+//
+//	public void Track (string eventId, Dictionary<string, string> properties)
+//	{
+//		Track (eventId, properties, 0);
+//	}
+//	
+//	public void Track (string eventId, GATrackOption option)
+//	{
+//		Track (eventId, new Dictionary<string, string>(), option);
+//	}
+//	
+//	public void Track (string eventId, Dictionary<string, string> properties, GATrackOption option)
+//	{
+//		#if UNITY_ANDROID
+//		GrowthAnalyticsAndroid.Track(eventId, properties, (int)option);
+//		#elif UNITY_IPHONE
+//		GrowthAnalyticsIOS.Track(eventId, properties, (int)option);
+//		#endif
+//	}
 
 	public void Open ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.open();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		_open(); 
+		GrowthAnalyticsAndroid.Open();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.Open(); 
 		#endif
 	}
 	
 	public void Close ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.close();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		_close(); 
+		GrowthAnalyticsAndroid.Close();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.Close(); 
 		#endif
 	}
 	
 	public void Purchase (int price, string category, string product)
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.purchase(price, category, product);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		purchase(price, category, product); 
+		GrowthAnalyticsAndroid.Purchase(price, category, product);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.Purchase(price, category, product); 
 		#endif
 	}
 	
 	public void SetUserId (string userId)
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setUserId(userId);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setUserId(userId); 
+		GrowthAnalyticsAndroid.SetUserId(userId);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetUserId(userId); 
 		#endif
 	}
 	
 	public void SetName (string name)
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setName(name);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setName(name); 
+		GrowthAnalyticsAndroid.SetName(name);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetName(name); 
 		#endif
 	}
 	
 	public void SetAge (int age)
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setAge(age);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setAge(age); 
+		GrowthAnalyticsAndroid.SetAge(age);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetAge(age); 
 		#endif
 	}
-
-	/*
-	public void SetGender() {
-		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.open();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		open(); 
-		#endif
-	}*/
+	
+//	public void SetGender(GAGender gender) {
+//		#if UNITY_ANDROID
+//		GrowthAnalyticsAndroid.SetGender((int)gender); 
+//		#elif UNITY_IPHONE
+//		GrowthAnalyticsIOS.SetGender((int)gender); 
+//		#endif
+//	}
 	
 	public void SetLevel (int level)
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setLevel(level);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setLevel(level); 
+		GrowthAnalyticsAndroid.SetLevel(level);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetLevel(level); 
 		#endif
 	}
-
-	/*
-	public void SetDevelopment() {
+	
+	public void SetDevelopment (bool development) {
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.open();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		open(); 
+		GrowthAnalyticsAndroid.SetDevelopment(development);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetDevelopment(development); 
 		#endif
-	}*/
+	}
 
 	public void SetDeviceModel ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setDeviceModel();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setDeviceModel(); 
+		GrowthAnalyticsAndroid.SetDeviceModel();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetDeviceModel(); 
 		#endif
 	}
 	
 	public void SetOS ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setOS();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setOS(); 
+		GrowthAnalyticsAndroid.SetOS();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetOS(); 
 		#endif
 	}
 	
 	public void SetLanguage ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setLanguage();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setLanguage(); 
+		GrowthAnalyticsAndroid.SetLanguage();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetLanguage(); 
 		#endif
 	}
 	
 	public void SetTimeZone ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setTimeZone();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setTimeZone(); 
+		GrowthAnalyticsAndroid.SetTimeZone();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetTimeZone(); 
 		#endif
 	}
 	
 	public void SetTimeZoneOffset ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setTimeZoneOffset();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setTimeZoneOffset(); 
+		GrowthAnalyticsAndroid.SetTimeZoneOffset();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetTimeZoneOffset(); 
 		#endif
 	}
 	
 	public void SetAppVersion ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setAppVersion();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setAppVersion(); 
+		GrowthAnalyticsAndroid.SetAppVersion();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetAppVersion(); 
 		#endif
 	}
 	
 	public void SetRandom ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setRandom();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setRandom(); 
+		GrowthAnalyticsAndroid.SetRandom();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetRandom(); 
 		#endif
 	}
 	
 	public void SetAdvertisingId (string idfa)
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setAdvertisingId(idfa);
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setAdvertisingId(idfa); 
+		GrowthAnalyticsAndroid.SetAdvertisingId(idfa);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetAdvertisingId(idfa); 
 		#endif
 	}
 	
 	public void SetBasicTags ()
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.setBasicTags();
-		#elif UNITY_IPHONE && !UNITY_EDITOR
-		setBasicTags(); 
+		GrowthAnalyticsAndroid.SetBasicTags();
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetBasicTags(); 
 		#endif
 	}
 
