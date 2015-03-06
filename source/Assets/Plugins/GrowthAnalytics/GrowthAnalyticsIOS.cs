@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿//
+//  GrowthAnalyticsIOS.cs
+//  growthanalyticsios-unity
+//
+//  Created by Baekwoo Chung on 2015/02/20.
+//  Copyright (c) 2015 SIROK, Inc. All rights reserved.
+//
+
+using UnityEngine;
 using System;
 using System.Text;
 using System.Collections;

@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿//
+//  GrowthAnalyticsComponent.cs
+//  growthanalyticscomponent-unity
+//
+//  Created by Baekwoo Chung on 2015/02/20.
+//  Copyright (c) 2015 SIROK, Inc. All rights reserved.
+//
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,8 +16,8 @@ public class GrowthAnalyticsComponent : MonoBehaviour {
 //		GrowthAnalytics.GetInstance().Initialize("APPLICATION_ID","CREDENTIAL_ID");
 		GrowthAnalytics.GetInstance().Initialize("OyTg8vZd4KTNQDJ5", "3EKydeJ0imxJ5WqS22FJfdVamFLgu7XA");
 
-		GrowthAnalytics.GetInstance().Track("EVENT_ID");
-		GrowthAnalytics.GetInstance().Track("EVENT_ID", GrowthAnalytics.TrackOption.TrackOptionOnce);
+		GrowthAnalytics.GetInstance().Track("EVENT_ID_NUM1");
+		GrowthAnalytics.GetInstance().Track("EVENT_ID_NUM2", GrowthAnalytics.TrackOption.TrackOptionOnce);
 
 		Dictionary<string, string> a = new Dictionary<string, string>
 		{
@@ -20,11 +28,11 @@ public class GrowthAnalyticsComponent : MonoBehaviour {
 			{"toradol", "tramadol"}
 		};
 
-		GrowthAnalytics.GetInstance().Track("EVENT_ID", a);
-		GrowthAnalytics.GetInstance().Track("EVENT_ID", a, GrowthAnalytics.TrackOption.TrackOptionOnce);
+		GrowthAnalytics.GetInstance().Track("EVENT_ID_NUM3", a);
+		GrowthAnalytics.GetInstance().Track("EVENT_ID_NUM4", a, GrowthAnalytics.TrackOption.TrackOptionOnce);
 		
-		GrowthAnalytics.GetInstance().Tag("TAG_ID");
-		GrowthAnalytics.GetInstance().Tag("TAG_ID", "VALUE");
+		GrowthAnalytics.GetInstance().Tag("TAG_ID_NUM1");
+		GrowthAnalytics.GetInstance().Tag("TAG_ID_NUM2", "VALUE");
 		
 		GrowthAnalytics.GetInstance().Open();
 		GrowthAnalytics.GetInstance().Close();

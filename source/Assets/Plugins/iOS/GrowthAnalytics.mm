@@ -1,7 +1,9 @@
 //
 //  GrowthAnalytics.mm
+//  growthanalytics-unity
 //
-//  Created by Baekwoo Chung on 02/10/15.
+//  Created by Baekwoo Chung on 2015/02/20.
+//  Copyright (c) 2015 SIROK, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
