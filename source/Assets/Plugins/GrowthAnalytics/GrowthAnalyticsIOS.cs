@@ -7,6 +7,13 @@ using System.Runtime.InteropServices;
 
 public class GrowthAnalyticsIOS {
 
+	private static GrowthAnalyticsIOS instance = new GrowthAnalyticsIOS ();
+	
+	public static GrowthAnalyticsIOS GetInstance ()
+	{
+		return GrowthAnalyticsIOS.instance;
+	}
+
 	#if UNITY_IPHONE
 	[DllImport("__Internal")] static extern void initializeWithApplicationId(string applicationID, string credentialId);
 	[DllImport("__Internal")] static extern void track(string eventId, string properties, int option);
@@ -31,28 +38,28 @@ public class GrowthAnalyticsIOS {
 	[DllImport("__Internal")] static extern void setBasicTags();
 	#endif
 
-	public static void Initialize (string applicationId, string credentialId)
+	public void Initialize (string applicationId, string credentialId)
 	{
 		#if UNITY_IPHONE
 		initializeWithApplicationId(applicationId, credentialId);
 		#endif
 	}
 	
-	public static void Tag (string tagId, string value)
+	public void Tag (string tagId, string value)
 	{
 		#if UNITY_IPHONE
 		tag(tagId, value); 
 		#endif
 	}
 	
-	public static void Track (string eventId, Dictionary<string, string> properties, int option)
+	public void Track (string eventId, Dictionary<string, string> properties, int option)
 	{
 		#if UNITY_IPHONE
 		track(eventId, GetLine(properties), option);
 		#endif
 	}
 
-	public static string GetLine(Dictionary<string, string> dictionary)
+	public string GetLine (Dictionary<string, string> dictionary)
 	{
 		StringBuilder builder = new StringBuilder();
 		foreach (KeyValuePair<string, string> pair in dictionary)
@@ -64,124 +71,124 @@ public class GrowthAnalyticsIOS {
 		return result;
 	}
 	
-	public static void Open ()
+	public void Open ()
 	{
 		#if UNITY_IPHONE
 		_open(); 
 		#endif
 	}
 	
-	public static void Close ()
+	public void Close ()
 	{
 		#if UNITY_IPHONE
 		_close(); 
 		#endif
 	}
 	
-	public static void Purchase (int price, string category, string product)
+	public void Purchase (int price, string category, string product)
 	{
 		#if UNITY_IPHONE
 		purchase(price, category, product); 
 		#endif
 	}
 	
-	public static void SetUserId (string userId)
+	public void SetUserId (string userId)
 	{
 		#if UNITY_IPHONE
 		setUserId(userId); 
 		#endif
 	}
 	
-	public static void SetName (string name)
+	public void SetName (string name)
 	{
 		#if UNITY_IPHONE
 		setName(name); 
 		#endif
 	}
 	
-	public static void SetAge (int age)
+	public void SetAge (int age)
 	{
 		#if UNITY_IPHONE
 		setAge(age); 
 		#endif
 	}
 	
-	public static void SetGender(int gender) {
+	public void SetGender(int gender) {
 		#if UNITY_IPHONE
 		setGender(gender); 
 		#endif
 	}
 	
-	public static void SetLevel (int level)
+	public void SetLevel (int level)
 	{
 		#if UNITY_IPHONE
 		setLevel(level); 
 		#endif
 	}
 	
-	public static void SetDevelopment (bool development) {
+	public void SetDevelopment (bool development) {
 		#if UNITY_IPHONE
 		setDevelopment(development); 
 		#endif
 	}
 	
-	public static void SetDeviceModel ()
+	public void SetDeviceModel ()
 	{
 		#if UNITY_IPHONE
 		setDeviceModel(); 
 		#endif
 	}
 	
-	public static void SetOS ()
+	public void SetOS ()
 	{
 		#if UNITY_IPHONE
 		setOS(); 
 		#endif
 	}
 	
-	public static void SetLanguage ()
+	public void SetLanguage ()
 	{
 		#if UNITY_IPHONE
 		setLanguage(); 
 		#endif
 	}
 	
-	public static void SetTimeZone ()
+	public void SetTimeZone ()
 	{
 		#if UNITY_IPHONE
 		setTimeZone(); 
 		#endif
 	}
 	
-	public static void SetTimeZoneOffset ()
+	public void SetTimeZoneOffset ()
 	{
 		#if UNITY_IPHONE
 		setTimeZoneOffset(); 
 		#endif
 	}
 	
-	public static void SetAppVersion ()
+	public void SetAppVersion ()
 	{
 		#if UNITY_IPHONE
 		setAppVersion(); 
 		#endif
 	}
 	
-	public static void SetRandom ()
+	public void SetRandom ()
 	{
 		#if UNITY_IPHONE
 		setRandom(); 
 		#endif
 	}
 	
-	public static void SetAdvertisingId (string idfa)
+	public void SetAdvertisingId (string idfa)
 	{
 		#if UNITY_IPHONE
 		setAdvertisingId(idfa); 
 		#endif
 	}
 	
-	public static void SetBasicTags ()
+	public void SetBasicTags ()
 	{
 		#if UNITY_IPHONE
 		setBasicTags(); 

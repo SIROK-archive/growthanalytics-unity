@@ -7,6 +7,11 @@ public class GrowthAnalyticsAndroid {
 
 	private static GrowthAnalyticsAndroid instance = new GrowthAnalyticsAndroid ();
 
+	public static GrowthAnalyticsAndroid GetInstance ()
+	{
+		return GrowthAnalyticsAndroid.instance;
+	}
+
 	#if UNITY_ANDROID
 	private static AndroidJavaObject growthAnalytics;
 	#endif
@@ -19,7 +24,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 
-	public static void Initialize (string applicationId, string credentialId) {
+	public void Initialize (string applicationId, string credentialId) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -29,7 +34,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void Tag (string tagId, string value) {
+	public void Tag (string tagId, string value) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -37,7 +42,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void Track(string eventId, Dictionary<string, string> properties,GrowthAnalytics.TrackOption option) {
+	public void Track(string eventId, Dictionary<string, string> properties,GrowthAnalytics.TrackOption option) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -63,7 +68,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void Open() {
+	public void Open() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -71,7 +76,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void Close() {
+	public void Close() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -79,7 +84,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void Purchase(int price, string category, string product) {
+	public void Purchase(int price, string category, string product) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -87,7 +92,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetUserId(string userId) {
+	public void SetUserId(string userId) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -95,7 +100,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetName(string name) {
+	public void SetName(string name) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -103,7 +108,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetAge(int age) {
+	public void SetAge(int age) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -112,7 +117,7 @@ public class GrowthAnalyticsAndroid {
 	}
 
 
-	public static void SetGender(GrowthAnalytics.Gender gender) {
+	public void SetGender(GrowthAnalytics.Gender gender) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -122,7 +127,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetLevel(int level) {
+	public void SetLevel(int level) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -130,7 +135,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetDevelopment(bool development) {
+	public void SetDevelopment(bool development) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -138,7 +143,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetDeviceModel() {
+	public void SetDeviceModel() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -146,7 +151,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetOS() {
+	public void SetOS() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -154,7 +159,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetLanguage() {
+	public void SetLanguage() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -162,7 +167,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetTimeZone() {
+	public void SetTimeZone() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -170,7 +175,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetTimeZoneOffset() {
+	public void SetTimeZoneOffset() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -178,7 +183,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetAppVersion() {
+	public void SetAppVersion() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -186,7 +191,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetRandom() {
+	public void SetRandom() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -194,7 +199,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetAdvertisingId() {
+	public void SetAdvertisingId() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
@@ -202,7 +207,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetBasicTags() {
+	public void SetBasicTags() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;

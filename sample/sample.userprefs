@@ -1,6 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../source/Assets/Plugins/GrowthAnalytics/GrowthAnalyticsIOS.cs">
+    <Files>
+      <File FileName="../source/Assets/Plugins/GrowthAnalytics/GrowthAnalyticsAndroid.cs" Line="8" Column="2" />
+      <File FileName="../source/Assets/Plugins/GrowthAnalytics/GrowthAnalytics.cs" Line="34" Column="36" />
+      <File FileName="../source/Assets/Plugins/GrowthAnalytics/GrowthAnalyticsIOS.cs" Line="175" Column="3" />
+      <File FileName="Assets/GrowthAnalyticsComponent.cs" Line="11" Column="33" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
