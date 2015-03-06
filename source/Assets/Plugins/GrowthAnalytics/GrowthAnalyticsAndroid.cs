@@ -41,6 +41,7 @@ public class GrowthAnalyticsAndroid {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
+
 		using (AndroidJavaObject obj_HashMap = new AndroidJavaObject("java.util.HashMap")) {
 			System.IntPtr method_Put = AndroidJNIHelper.GetMethodID (obj_HashMap.GetRawClass (), "put",
 			                                                        "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
@@ -55,6 +56,8 @@ public class GrowthAnalyticsAndroid {
 					}
 				}
 			}
+			AndroidJavaClass growthAnalyticsClass = new AndroidJavaClass( "com.growthbeat.analytics.GrowthAnalytics$TrackOption" );
+			AndroidJavaObject optionObject = growthAnalyticsClass.GetStatic<AndroidJavaObject>(option == GrowthAnalytics.TrackOption.TrackOptionOnce ? "ONCE" : "COUNTER");
 			growthAnalytics.Call("track",eventId, obj_HashMap, optionObject);
 		}
 		#endif

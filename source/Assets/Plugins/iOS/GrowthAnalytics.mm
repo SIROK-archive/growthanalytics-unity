@@ -1,9 +1,7 @@
 //
-//  GrowthPush.mm
+//  GrowthAnalytics.mm
 //
-//
-//  Created by Cuong Do on 11/5/13.
-//
+//  Created by Baekwoo Chung on 02/10/15.
 //
 
 #import <UIKit/UIKit.h>
