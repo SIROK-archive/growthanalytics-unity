@@ -8,20 +8,20 @@ public class GrowthAnalyticsComponent : MonoBehaviour {
 //		GrowthAnalytics.GetInstance().Initialize("APPLICATION_ID","CREDENTIAL_ID");
 		GrowthAnalytics.GetInstance().Initialize("OyTg8vZd4KTNQDJ5", "3EKydeJ0imxJ5WqS22FJfdVamFLgu7XA");
 
-//		GrowthAnalytics.GetInstance().Track("EVENT_ID");
-//		GrowthAnalytics.GetInstance().Track("EVENT_ID", GrowthAnalytics.GATrackOption.GATrackOptionOnce);
-//
-//		Dictionary<string, string> a = new Dictionary<string, string>
-//		{
-//			{"ant", "aunt"},
-//			{"Sam", "Samantha"},
-//			{"clozapine", "quetiapine"},
-//			{"flomax", "volmax"},
-//			{"toradol", "tramadol"}
-//		};
-//
-//		GrowthAnalytics.GetInstance().Track("EVENT_ID", a);
-//		GrowthAnalytics.GetInstance().Track("EVENT_ID", a, GrowthAnalytics.GATrackOption.GATrackOptionOnce);
+		GrowthAnalytics.GetInstance().Track("EVENT_ID");
+		GrowthAnalytics.GetInstance().Track("EVENT_ID", GrowthAnalytics.TrackOption.TrackOptionOnce);
+
+		Dictionary<string, string> a = new Dictionary<string, string>
+		{
+			{"ant", "aunt"},
+			{"Sam", "Samantha"},
+			{"clozapine", "quetiapine"},
+			{"flomax", "volmax"},
+			{"toradol", "tramadol"}
+		};
+
+		GrowthAnalytics.GetInstance().Track("EVENT_ID", a);
+		GrowthAnalytics.GetInstance().Track("EVENT_ID", a, GrowthAnalytics.TrackOption.TrackOptionOnce);
 		
 		GrowthAnalytics.GetInstance().Tag("TAG_ID");
 		GrowthAnalytics.GetInstance().Tag("TAG_ID", "VALUE");
@@ -33,7 +33,7 @@ public class GrowthAnalyticsComponent : MonoBehaviour {
 		GrowthAnalytics.GetInstance().SetUserId("USER_ID");
 		GrowthAnalytics.GetInstance().SetName("USER_NAME");
 		GrowthAnalytics.GetInstance().SetAge(20);
-		GrowthAnalytics.GetInstance().SetGender(GrowthAnalytics.GAGender.GAGenderMale);
+		GrowthAnalytics.GetInstance().SetGender(GrowthAnalytics.Gender.GenderMale);
 		GrowthAnalytics.GetInstance().SetLevel(99);
 		GrowthAnalytics.GetInstance().SetDevelopment(false);
 		GrowthAnalytics.GetInstance().SetDeviceModel();
@@ -43,7 +43,7 @@ public class GrowthAnalyticsComponent : MonoBehaviour {
 		GrowthAnalytics.GetInstance().SetTimeZoneOffset();
 		GrowthAnalytics.GetInstance().SetAppVersion();
 		GrowthAnalytics.GetInstance().SetRandom();
-		GrowthAnalytics.GetInstance().SetAdvertisingId("IDFA");
+//		GrowthAnalytics.GetInstance().SetAdvertisingId("IDFA");
 		GrowthAnalytics.GetInstance().SetBasicTags();
 
 	}

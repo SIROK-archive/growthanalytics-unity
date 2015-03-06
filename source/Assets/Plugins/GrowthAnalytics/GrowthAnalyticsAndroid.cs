@@ -37,13 +37,15 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-//	public static void Track(string eventId, Dictionary<string, string> properties, int option) {
-//		#if UNITY_ANDROID
-//		if (growthAnalytics == null)
-//			return;
-//		growthAnalytics.Call("track",eventId, properties, option);
-//		#endif
-//	}
+	public static void Track(string eventId, Dictionary<string, string> properties,GrowthAnalytics.TrackOption option) {
+		#if UNITY_ANDROID
+		if (growthAnalytics == null)
+			return;
+		AndroidJavaClass growthAnalyticsClass = new AndroidJavaClass( "com.growthbeat.analytics.GrowthAnalytics$TrackOption" );
+		AndroidJavaObject optionObject = growthAnalyticsClass.GetStatic<AndroidJavaObject>(option == GrowthAnalytics.TrackOption.TrackOptionOnce ? "ONCE" : "COUNTER");
+		growthAnalytics.Call("track",eventId, optionObject);
+		#endif
+	}
 	
 	public static void Open() {
 		#if UNITY_ANDROID
@@ -94,12 +96,12 @@ public class GrowthAnalyticsAndroid {
 	}
 
 
-	public static void SetGender(GrowthAnalytics.GAGender gender) {
+	public static void SetGender(GrowthAnalytics.Gender gender) {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
 		AndroidJavaClass growthAnalyticsClass = new AndroidJavaClass( "com.growthbeat.analytics.GrowthAnalytics$Gender" );
-		AndroidJavaObject genderObject = growthAnalyticsClass.GetStatic<AndroidJavaObject>(gender == GrowthAnalytics.GAGender.GAGenderMale ? "MALE" : "FEMALE");
+		AndroidJavaObject genderObject = growthAnalyticsClass.GetStatic<AndroidJavaObject>(gender == GrowthAnalytics.Gender.GenderMale ? "MALE" : "FEMALE");
 		growthAnalytics.Call("setGender",genderObject);
 		#endif
 	}
@@ -176,7 +178,7 @@ public class GrowthAnalyticsAndroid {
 		#endif
 	}
 	
-	public static void SetAdvertisingId(string temp) {
+	public static void SetAdvertisingId() {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;

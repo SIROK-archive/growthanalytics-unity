@@ -12,18 +12,18 @@ public class GrowthAnalytics
 		return GrowthAnalytics.instance;
 	}
 
-	public enum GAGender
+	public enum Gender
 	{
-		GAGenderNone = 0,
-		GAGenderMale = 1,
-		GAGenderFemale = 2
+		GenderNone = 0,
+		GenderMale = 1,
+		GenderFemale = 2
 	}
 
-	public enum GATrackOption
+	public enum TrackOption
 	{
-		GATrackOptionDefault = 0,
-		GATrackOptionOnce = 1,
-		GATrackOptionCounter = 2
+		TrackOptionDefault = 0,
+		TrackOptionOnce = 1,
+		TrackOptionCounter = 2
 	}
 
 	public void Initialize (string applicationId, string credentialId)
@@ -49,29 +49,29 @@ public class GrowthAnalytics
 		#endif
 	}
 
-//	public void Track (string eventId)
-//	{
-//		Track (eventId, new Dictionary<string, string>(), 0);
-//	}
-//
-//	public void Track (string eventId, Dictionary<string, string> properties)
-//	{
-//		Track (eventId, properties, 0);
-//	}
-//	
-//	public void Track (string eventId, GATrackOption option)
-//	{
-//		Track (eventId, new Dictionary<string, string>(), option);
-//	}
-//	
-//	public void Track (string eventId, Dictionary<string, string> properties, GATrackOption option)
-//	{
-//		#if UNITY_ANDROID
-//		GrowthAnalyticsAndroid.Track(eventId, properties, (int)option);
-//		#elif UNITY_IPHONE
-//		GrowthAnalyticsIOS.Track(eventId, properties, (int)option);
-//		#endif
-//	}
+	public void Track (string eventId)
+	{
+		Track (eventId, new Dictionary<string, string>(), 0);
+	}
+
+	public void Track (string eventId, Dictionary<string, string> properties)
+	{
+		Track (eventId, properties, 0);
+	}
+	
+	public void Track (string eventId, TrackOption option)
+	{
+		Track (eventId, new Dictionary<string, string>(), option);
+	}
+	
+	public void Track (string eventId, Dictionary<string, string> properties, TrackOption option)
+	{
+		#if UNITY_ANDROID
+		GrowthAnalyticsAndroid.Track(eventId, properties, option);
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.Track(eventId, properties, (int)option);
+		#endif
+	}
 
 	public void Open ()
 	{
@@ -127,7 +127,7 @@ public class GrowthAnalytics
 		#endif
 	}
 	
-	public void SetGender(GAGender gender) {
+	public void SetGender(Gender gender) {
 		#if UNITY_ANDROID
 		GrowthAnalyticsAndroid.SetGender(gender); 
 		#elif UNITY_IPHONE
@@ -218,7 +218,7 @@ public class GrowthAnalytics
 	public void SetAdvertisingId (string idfa)
 	{
 		#if UNITY_ANDROID
-		GrowthAnalyticsAndroid.SetAdvertisingId(idfa);
+		GrowthAnalyticsAndroid.SetAdvertisingId();
 		#elif UNITY_IPHONE
 		GrowthAnalyticsIOS.SetAdvertisingId(idfa); 
 		#endif
