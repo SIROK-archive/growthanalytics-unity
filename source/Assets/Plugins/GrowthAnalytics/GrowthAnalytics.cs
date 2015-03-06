@@ -127,13 +127,13 @@ public class GrowthAnalytics
 		#endif
 	}
 	
-//	public void SetGender(GAGender gender) {
-//		#if UNITY_ANDROID
-//		GrowthAnalyticsAndroid.SetGender((int)gender); 
-//		#elif UNITY_IPHONE
-//		GrowthAnalyticsIOS.SetGender((int)gender); 
-//		#endif
-//	}
+	public void SetGender(GAGender gender) {
+		#if UNITY_ANDROID
+		GrowthAnalyticsAndroid.SetGender(gender); 
+		#elif UNITY_IPHONE
+		GrowthAnalyticsIOS.SetGender((int)gender); 
+		#endif
+	}
 	
 	public void SetLevel (int level)
 	{

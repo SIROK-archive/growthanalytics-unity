@@ -92,14 +92,17 @@ public class GrowthAnalyticsAndroid {
 		growthAnalytics.Call("setAge",age);
 		#endif
 	}
-	
-//	public static void SetGender(int gender) {
-//		#if UNITY_ANDROID
-//		if (growthAnalytics == null)
-//			return;
-//		growthAnalytics.Call("setGender",gender);
-//		#endif
-//	}
+
+
+	public static void SetGender(GrowthAnalytics.GAGender gender) {
+		#if UNITY_ANDROID
+		if (growthAnalytics == null)
+			return;
+		AndroidJavaClass growthAnalyticsClass = new AndroidJavaClass( "com.growthbeat.analytics.GrowthAnalytics$Gender" );
+		AndroidJavaObject genderObject = growthAnalyticsClass.GetStatic<AndroidJavaObject>(gender == GrowthAnalytics.GAGender.GAGenderMale ? "MALE" : "FEMALE");
+		growthAnalytics.Call("setGender",genderObject);
+		#endif
+	}
 	
 	public static void SetLevel(int level) {
 		#if UNITY_ANDROID

@@ -33,7 +33,7 @@ public class GrowthAnalyticsComponent : MonoBehaviour {
 		GrowthAnalytics.GetInstance().SetUserId("USER_ID");
 		GrowthAnalytics.GetInstance().SetName("USER_NAME");
 		GrowthAnalytics.GetInstance().SetAge(20);
-//		GrowthAnalytics.GetInstance().SetGender(GrowthAnalytics.GAGender.GAGenderMale);
+		GrowthAnalytics.GetInstance().SetGender(GrowthAnalytics.GAGender.GAGenderMale);
 		GrowthAnalytics.GetInstance().SetLevel(99);
 		GrowthAnalytics.GetInstance().SetDevelopment(false);
 		GrowthAnalytics.GetInstance().SetDeviceModel();
