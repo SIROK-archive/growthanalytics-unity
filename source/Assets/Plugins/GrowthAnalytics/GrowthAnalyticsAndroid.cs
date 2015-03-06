@@ -41,9 +41,22 @@ public class GrowthAnalyticsAndroid {
 		#if UNITY_ANDROID
 		if (growthAnalytics == null)
 			return;
-		AndroidJavaClass growthAnalyticsClass = new AndroidJavaClass( "com.growthbeat.analytics.GrowthAnalytics$TrackOption" );
-		AndroidJavaObject optionObject = growthAnalyticsClass.GetStatic<AndroidJavaObject>(option == GrowthAnalytics.TrackOption.TrackOptionOnce ? "ONCE" : "COUNTER");
-		growthAnalytics.Call("track",eventId, optionObject);
+		using (AndroidJavaObject obj_HashMap = new AndroidJavaObject("java.util.HashMap")) {
+			System.IntPtr method_Put = AndroidJNIHelper.GetMethodID (obj_HashMap.GetRawClass (), "put",
+			                                                        "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
+			object[] args = new object[2];
+			foreach (KeyValuePair<string, string> kvp in properties) {
+				using (AndroidJavaObject k = new AndroidJavaObject("java.lang.String", kvp.Key)) {
+					using (AndroidJavaObject v = new AndroidJavaObject("java.lang.String", kvp.Value)) {
+						args [0] = k;
+						args [1] = v;
+						AndroidJNI.CallObjectMethod (obj_HashMap.GetRawObject (),
+						                            method_Put, AndroidJNIHelper.CreateJNIArgArray (args));
+					}
+				}
+			}
+			growthAnalytics.Call("track",eventId, obj_HashMap, optionObject);
+		}
 		#endif
 	}
 	

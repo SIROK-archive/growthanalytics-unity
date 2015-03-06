@@ -43,7 +43,7 @@ public class GrowthAnalyticsComponent : MonoBehaviour {
 		GrowthAnalytics.GetInstance().SetTimeZoneOffset();
 		GrowthAnalytics.GetInstance().SetAppVersion();
 		GrowthAnalytics.GetInstance().SetRandom();
-//		GrowthAnalytics.GetInstance().SetAdvertisingId("IDFA");
+		GrowthAnalytics.GetInstance().SetAdvertisingId("IDFA");
 		GrowthAnalytics.GetInstance().SetBasicTags();
 
 	}
