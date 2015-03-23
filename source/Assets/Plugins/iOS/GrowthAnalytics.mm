@@ -23,7 +23,7 @@ extern "C" void track(const char* eventId, const char* properties, int option) {
     NSData* data = [NSStringFromCharString(properties) dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     
-    [[GrowthAnalytics sharedInstance] track:NSStringFromCharString(eventId) properties:dictionary option:option];
+    [[GrowthAnalytics sharedInstance] track:NSStringFromCharString(eventId) properties:dictionary option:(GATrackOption)option];
 }
 
 extern "C" void tag(const char* tagId, const char* value) {
@@ -55,7 +55,7 @@ extern "C" void setAge(int age) {
 }
 
 extern "C" void setGender(int gender) {
-    [[GrowthAnalytics sharedInstance] setGender:gender];
+    [[GrowthAnalytics sharedInstance] setGender:(GAGender)gender];
 }
 
 extern "C" void setLevel(int level) {
